@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as st                                           # Develop web applications
 from dotenv import load_dotenv                                   # Load environment variables into python environment
 from langchain_community.chat_models import ChatOpenAI           # OpenAI GPT models
 from langchain_groq import ChatGroq                              # Use Groq LLMS
@@ -29,20 +29,23 @@ def main():
     if user_question is not None:  # Ensure user input is valid
         st.session_state.messages.append(HumanMessage(content=user_question))
 
-        if csv_file:
-            # Convert file to a readable format
-            agent = create_csv_agent(llm, csv_file, verbose=True, allow_dangerous_code=True)
-            response = agent.run(user_question)
+        with st.spinner("Thinking..."):
 
-            # Append AI response to message history
-            st.session_state.messages.append(AIMessage(content=response))
 
-    # Display message history
-    for i, msg in enumerate(st.session_state.messages):
-        if isinstance(msg, HumanMessage):
-            message(msg.content, is_user=True, key=f"{i}_user")
-        elif isinstance(msg, AIMessage):
-            message(msg.content, is_user=False, key=f"{i}_ai")
+            if csv_file:
+                # Convert file to a readable format
+                agent = create_csv_agent(llm, csv_file, verbose=True, allow_dangerous_code=True)
+                response = agent.run(user_question)
+
+                # Append AI response to message history
+                st.session_state.messages.append(AIMessage(content=response))
+
+        # Display message history
+        for i, msg in enumerate(st.session_state.messages):
+            if isinstance(msg, HumanMessage):
+                message(msg.content, is_user=True, key=f"{i}_user")
+            elif isinstance(msg, AIMessage):
+                message(msg.content, is_user=False, key=f"{i}_ai")
 
 if __name__ == '__main__':
     main()

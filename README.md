@@ -22,7 +22,7 @@ creating .gitignore file , .env file , requirements.txt and python File
   echo "# Files to ignore" > .gitignore && echo "OPENAI_API_KEY=your_api_key_here" && echo "GROQ_API_KEY=your_api_key_here" > .env && echo "# python script" > <Python_File>
   ```
 
-Here i used LangSmith which is the part of lanchain and it can be used for monitor the our built AI models also we can make dashboard as well. For that you need to setup follows in .env file
+Here i used LangSmith which is the part of langchain and it can be used for monitor the our built AI models also we can make dashboard as well. For that you need to setup follows in .env file
 
   ```
   LANGSMITH_TRACING = true

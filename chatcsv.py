@@ -13,7 +13,7 @@ def main():
     # llm = ChatOpenAI(model = "gpt-3.5-turbo", temperature = 0) 
     llm = ChatGroq(model="llama3-8b-8192",temperature = 0)
 
-    st.set_page_config(page_title="Chat CSV", page_iconcls=":speech_balloon:", layout="wide")
+    st.set_page_config(page_title="Chat CSV", page_icon=":speech_balloon:", layout="wide")
 
     st.title("Ask Questions From Your CSV")
 
